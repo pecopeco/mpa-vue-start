@@ -1,6 +1,7 @@
 <template lang="pug">
   .home
-    .title home
+    .title {{text.avatar}}
+    .get(@click="getData") get
 </template>
 
 <script>
@@ -31,11 +32,10 @@ export default {
     async getData () {
       this.$message('loading...')
       this.$store.dispatch('setUser', {name: 'yang'})
-      this.text = await this.$http.get('/search', {id: 1})
+      this.text = await this.$http.get('/v1/profile/info')
     }
   },
   mounted () {
-    this.getData()
   }
 }
 </script>

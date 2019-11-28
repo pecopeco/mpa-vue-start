@@ -1,3 +1,4 @@
+const PrerenderSPAPlugin = require('prerender-spa-plugin')
 var path = require('path')
 
 function resolve (dir) {
@@ -14,19 +15,20 @@ function addStyleResource (rule) {
   })
 }
 
+const proxyConfig = {
+  '/api': {
+    target: 'https://retail.galaxyidea.com',
+    changeOrigin: true,
+    pathRewrite: { '^/api': '' }
+  }
+}
 module.exports = {
   assetsDir: 'static',
-  publicPath: '',
+  publicPath: '/',
 
   devServer: {
     open: true,
-    proxy: {
-      '/api': {
-        target: 'https://baidu.com',
-        changeOrigin: true,
-        pathRewrite: { '^/api': '' }
-      }
-    }
+    proxy: proxyConfig
   },
 
   chainWebpack: config => {
@@ -38,17 +40,25 @@ module.exports = {
       .set('components', resolve('src/components'))
   },
 
-  pluginOptions: {
-    prerenderSpa: {
-      registry: undefined,
-      renderRoutes: [
-        '/',
-        '/about',
-        '/my'
-      ],
-      useRenderEvent: true,
-      headless: true,
-      onlyProduction: true
+  configureWebpack: config => {
+    if (process.env.NODE_ENV !== 'production') return
+    return {
+      plugins: [
+        new PrerenderSPAPlugin({
+          staticDir: path.join(__dirname, 'dist'),
+          routes: [
+            '/',
+            '/about',
+            '/my'
+          ],
+          // server: {
+          //   proxy: proxyConfig
+          // },
+          renderer: new PrerenderSPAPlugin.PuppeteerRenderer({
+            renderAfterTime: 5000,
+          })
+        })
+      ]
     }
   }
 }

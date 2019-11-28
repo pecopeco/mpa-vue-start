@@ -19,7 +19,7 @@ let config = {
   api_url: process.env.NODE_ENV !== 'production'
   ? '/api'
   : process.env.VUE_APP_MODE === 'test'
-  ? 'https://test.baidu.com'
+  ? 'https://baidu.test.com'
   : 'https://baidu.com'
 }
 
@@ -42,7 +42,7 @@ function request (url, form = {}, type) {
   }).then((res) => {
     if (type === 'delete' || res.status === 204) {
       return res.text()
-    } else if (res.data.state === 'T') {
+    } else if (res.status === 200) {
       return res.data
     } else {
       Message(JSON.parse(res.data).error.msg)
@@ -83,5 +83,5 @@ new Vue({
   router,
   store,
   render: h => h(App),
-  mounted: () => document.dispatchEvent(new Event("x-app-rendered")),
+  mounted: () => document.dispatchEvent(new Event('render-event')),
 }).$mount('#app')

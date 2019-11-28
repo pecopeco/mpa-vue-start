@@ -1,6 +1,6 @@
 <template lang="pug">
   .about
-    .title about
+    .title {{text.avatar}}
 </template>
 
 <script>
@@ -23,11 +23,13 @@ export default {
   },
   data () {
     return {
+      text: ''
     }
   },
   methods: {
   },
-  mounted () {
+  async mounted () {
+    this.text = await this.$http.get('/v1/profile/info')
   }
 }
 </script>
