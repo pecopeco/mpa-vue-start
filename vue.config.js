@@ -17,7 +17,7 @@ function addStyleResource (rule) {
 
 const proxyConfig = {
   '/api': {
-    target: 'https://retail.galaxyidea.com',
+    target: 'https://baidu.com',
     changeOrigin: true,
     pathRewrite: { '^/api': '' }
   }
@@ -51,6 +51,7 @@ module.exports = {
             '/about',
             '/my'
           ],
+          // 预渲染代理
           // server: {
           //   proxy: proxyConfig
           // },

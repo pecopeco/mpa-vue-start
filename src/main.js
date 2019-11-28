@@ -19,7 +19,7 @@ let config = {
   api_url: process.env.NODE_ENV !== 'production'
   ? '/api'
   : process.env.VUE_APP_MODE === 'test'
-  ? 'https://baidu.test.com'
+  ? 'https://test.baidu.com'
   : 'https://baidu.com'
 }
 
