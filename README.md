@@ -1,6 +1,7 @@
 # vue-start
 
 > vue PC端多页应用模板，基于 pug、stylus、fly、element-ui、vuex、vue-router 搭建，使用 prerender-spa-plugin 预渲染优化seo
+
 > 前端预渲染设置代理暂时无法解决跨域问题，需后端放开限制
 
 ### 安装
