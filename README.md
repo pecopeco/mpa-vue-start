@@ -2,8 +2,6 @@
 
 > vue PC端多页应用模板，基于 pug、stylus、fly、element-ui、vuex、vue-router 搭建，使用 prerender-spa-plugin 预渲染优化seo
 
-> 预渲染本质上是调用 chrome 无头浏览器渲染打包页面，此时线上接口地址已打包完成，因此前端预渲染设置代理暂时无法解决跨域问题，需后端放开限制
-
 ### 安装
 ```
 npm i

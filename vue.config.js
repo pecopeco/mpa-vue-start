@@ -51,10 +51,9 @@ module.exports = {
             '/about',
             '/my'
           ],
-          // 预渲染代理
-          // server: {
-          //   proxy: proxyConfig
-          // },
+          server: {
+            proxy: proxyConfig
+          },
           renderer: new PrerenderSPAPlugin.PuppeteerRenderer({
             renderAfterTime: 5000,
           })

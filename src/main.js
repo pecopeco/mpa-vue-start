@@ -16,7 +16,7 @@ Vue.use(ElementUI)
 Vue.use(MetaInfo)
 
 let config = {
-  api_url: process.env.NODE_ENV !== 'production'
+  api_url: process.env.NODE_ENV !== 'production' || location.hostname === 'localhost'
   ? '/api'
   : process.env.VUE_APP_MODE === 'test'
   ? 'https://test.baidu.com'
