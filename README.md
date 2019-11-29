@@ -1,4 +1,4 @@
-# vue-start
+# mpa-vue-start
 
 > vue PC端多页应用模板，基于 pug、stylus、fly、element-ui、vuex、vue-router 搭建，使用 prerender-spa-plugin 预渲染优化seo
 
