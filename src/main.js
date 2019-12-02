@@ -23,7 +23,22 @@ let config = {
   : 'https://baidu.com'
 }
 
+let requestUrl
+
+// 重复请求延迟
+function delayRequest () {
+  setTimeout(() => {
+    requestUrl = ''
+  }, 300)
+}
+
 function request (url, form = {}, type) {
+  // 拦截重复请求
+  if (requestUrl === url) {
+    return
+  }
+  requestUrl = url
+
   let compleForm = form
   // let presetForm = {
   //   orgName: 123456
@@ -40,6 +55,7 @@ function request (url, form = {}, type) {
     method: type,
     timeout: 5000
   }).then((res) => {
+    delayRequest()
     if (type === 'delete' || res.status === 204) {
       return res.text()
     } else if (res.status === 200) {
@@ -48,6 +64,7 @@ function request (url, form = {}, type) {
       Message(JSON.parse(res.data).error.msg)
     }
   }).catch((err) => {
+    delayRequest()
     const codeMessage = {
       200: '服务器成功返回请求的数据.',
       201: '新建或修改数据成功.',
