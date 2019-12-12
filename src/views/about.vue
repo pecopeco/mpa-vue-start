@@ -1,6 +1,7 @@
 <template lang="pug">
   .about
-    .title {{text.avatar}}
+    .title 123
+    el-button 456
 </template>
 
 <script>
