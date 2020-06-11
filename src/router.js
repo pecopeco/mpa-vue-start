@@ -12,12 +12,12 @@ export default new Router({
       component: require('@/views/home').default
     },
     {
-      path: '/about',
+      path: '/about/about.html',
       name: 'about',
       component: require('@/views/about').default
     },
     {
-      path: '/my',
+      path: '/my/my.html',
       name: 'my',
       component: require('@/views/my').default
     },

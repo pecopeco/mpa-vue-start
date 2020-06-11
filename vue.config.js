@@ -48,11 +48,14 @@ module.exports = {
           staticDir: path.join(__dirname, 'dist'),
           routes: [
             '/',
-            '/about',
-            '/my'
+            '/about/about.html',
+            '/my/my.html'
           ],
-          server: {
-            proxy: proxyConfig
+          postProcess (renderedRoute) {
+            if (renderedRoute.route.endsWith('.html')) {
+              renderedRoute.outputPath = path.join(__dirname, 'dist', renderedRoute.route)
+            }
+            return renderedRoute
           },
           renderer: new PrerenderSPAPlugin.PuppeteerRenderer({
             renderAfterTime: 5000,
