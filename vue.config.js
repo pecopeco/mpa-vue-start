@@ -51,6 +51,7 @@ module.exports = {
             '/about/about.html',
             '/my/my.html'
           ],
+          // 默认编译每个.vue文件单独以路由path为文件名包含index.html，如果路由path包含路径且以.html结尾，则直接修改index.html为路由设定文件名，路由名需对应保持一致，且路由mode必须为history，最终访问路径为：http://localhost:8080/xxx/xxx.html
           postProcess (renderedRoute) {
             if (renderedRoute.route.endsWith('.html')) {
               renderedRoute.outputPath = path.join(__dirname, 'dist', renderedRoute.route)
